@@ -1,5 +1,7 @@
 package Homework02;
 
+import java.util.regex.*;
+
 public class Employee {
     private String firstName;
     private String lastName;
@@ -18,7 +20,7 @@ public class Employee {
     }
 
     public String getFirstName() {
-        return firstName;
+        return firstName.substring(0,1).toUpperCase() + firstName.substring(1).toLowerCase();
     }
 
     public void setFirstName(String firstName) {
@@ -26,7 +28,7 @@ public class Employee {
     }
 
     public String getLastName() {
-        return lastName;
+        return lastName.substring(0,1).toUpperCase() + lastName.substring(1).toLowerCase();
     }
 
     public void setLastName(String lastName) {
@@ -38,7 +40,10 @@ public class Employee {
     }
 
     public void setAge(int age) {
-        this.age = age;
+        if (age > 0 && age < 122) {
+            this.age = age;
+        }
+        this.age = 18;
     }
 
     public String getPosition() {
@@ -54,7 +59,11 @@ public class Employee {
     }
 
     public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+        if (Pattern.matches("\\+38\\(0\\d{2}\\)\\d{7}", phoneNumber)) {
+            this.phoneNumber = phoneNumber;
+            return;
+        }
+        this.phoneNumber = "unidentified";
     }
 
     public String getEmail() {
@@ -62,7 +71,11 @@ public class Employee {
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        if (Pattern.matches("\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w+)*", email)) {
+            this.email = email;
+            return;
+        }
+        this.email = "unidentified";
     }
 }
 
