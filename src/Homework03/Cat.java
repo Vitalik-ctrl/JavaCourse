@@ -18,6 +18,11 @@ public class Cat extends Animal {
     }
 
     @Override
+    public String swim(int distance) {
+        return "Cats can't swim!";
+    }
+
+    @Override
     public String run(int distance) {
         if (distance > 0 && distance <= 200) {
             return super.run(distance);
