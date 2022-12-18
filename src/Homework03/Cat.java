@@ -9,6 +9,7 @@ public class Cat extends Animal {
     public Cat() {
     }
 
+
     @Override
     public String getName() {
         if (super.getName() != null && !super.getName().isEmpty() && !super.getName().equals("This animal")) {

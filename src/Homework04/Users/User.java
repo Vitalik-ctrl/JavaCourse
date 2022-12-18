@@ -5,7 +5,6 @@ import Homework04.Obstructions.Track;
 import Homework04.Obstructions.Wall;
 
 public class User {
-
     private double maxRunLength;
     private double maxJumpHeight;
 
