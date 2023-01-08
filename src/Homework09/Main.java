@@ -27,7 +27,7 @@ public class Main {
         System.out.println(fileNavigator.sortBySize());
         System.out.println("---------------------------------------------");
         System.out.println("Remove files by path: ");
-        fileNavigator.remove(paths[1]);
+        System.out.println(fileNavigator.remove(paths[1]));
         System.out.println(fileNavigator);
 
 

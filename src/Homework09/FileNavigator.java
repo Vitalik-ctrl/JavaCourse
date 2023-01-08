@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 
 public class FileNavigator {
 
-    Map<String, List<FileData>> files = new HashMap<>();
+    Map<String, List<FileData>> files;
 
     public FileNavigator() {
         this.files = new HashMap<>();
@@ -25,40 +25,26 @@ public class FileNavigator {
         }
     }
 
-    public List<FileData> find(String path) throws NullPointerException {
-        List<FileData> filesOnPath = files.get(path);
-        if (!filesOnPath.isEmpty()) {
-            return filesOnPath;
-        } else {
-            throw new NullPointerException("This path hasn't any files.");
-        }
+    public List<FileData> find(String path) {
+        return files.getOrDefault(path, Collections.emptyList());
     }
 
     public List<FileData> filterBySize(int size) {
-        List<FileData> returnedFiles = new ArrayList<>();
-        for (List<FileData> pathFiles : files.values()) {
-            returnedFiles.addAll(pathFiles.stream()
-                    .filter(el -> el.getFileSize() >= size)
-                    .toList());
-        }
-        return returnedFiles;
+        return files.values().stream()
+                .flatMap(List::stream)
+                .filter(el -> el.getFileSize() >= size)
+                .collect(Collectors.toList());
     }
 
-    public void remove(String path) throws NullPointerException {
-        if (files.containsKey(path)) {
-            files.remove(path);
-        } else {
-            throw new NullPointerException("This path doesn't exist.");
-        }
+    public boolean remove(String path) {
+        return files.remove(path) != null;
     }
 
     public List<FileData> sortBySize() {
-        List<FileData> returnedFiles = new ArrayList<>();
-        for (List<FileData> filesOnPath : files.values()) returnedFiles.addAll(filesOnPath);
-        returnedFiles = returnedFiles.stream()
+        return files.values().stream()
+                .flatMap(List::stream)
                 .sorted(Comparator.comparing(FileData::getFileSize))
                 .collect(Collectors.toList());
-        return returnedFiles;
     }
 
     @Override
