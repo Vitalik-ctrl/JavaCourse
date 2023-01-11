@@ -1,31 +1,50 @@
 package Lesson10;
 
-import java.util.Objects;
-
 public final class Product {
     String name;
+    int price;
+    Company company;
 
-    public Product(String name) {
+    public Product(String name, int price, Company company) {
         this.name = name;
-    }
-
-    public Product() {
+        this.price = price;
+        this.company = company;
     }
 
     public static String message() {
         return "Name can't be a null";
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Product product = (Product) o;
-        return name.equals(product.name);
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(name);
+    public String toString() {
+        return "Product{" +
+                "name='" + name + '\'' +
+                ", price=" + price +
+                ", company=" + company +
+                '}';
     }
 }
