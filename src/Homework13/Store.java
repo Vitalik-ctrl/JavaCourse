@@ -25,7 +25,7 @@ public class Store {
     public List<Product> productsByTypeWithDiscount(Type type, int discount) {
         return productList.stream()
                 .filter(product -> product.type() == type)
-                .map(product -> product.withPrice((100 - discount) * product.price() * 0.01))
+                .map(product -> product.withPrice(0.9 * product.price()))
                 .collect(Collectors.toList());
     }
 
