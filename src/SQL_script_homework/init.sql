@@ -1,9 +1,11 @@
+-- Homework table with id, name and description variables
 CREATE TABLE Homework (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255),
     description VARCHAR(255)
 );
 
+-- Lesson table with id, name, updatedAt and homework_id variables
 CREATE TABLE Lesson (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255),
@@ -12,6 +14,7 @@ CREATE TABLE Lesson (
     FOREIGN KEY (homework_id) REFERENCES Homework(id)
 );
 
+-- Schedule table with id, name, updatedAt and lesson_id variables
 CREATE TABLE Schedule (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255),
@@ -20,6 +23,7 @@ CREATE TABLE Schedule (
     FOREIGN KEY (lesson_id) REFERENCES Lesson(id)
 );
 
+-- Table that connects Schedule and Lesson tables between each other
 CREATE TABLE ScheduleLesson (
     schedule_id INT,
     lesson_id INT,
